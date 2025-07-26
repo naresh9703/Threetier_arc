@@ -46,13 +46,13 @@ dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing nodejs:20"
 
 
-id roboshop
+id expense
 if [ $? -ne 0 ]
 then
     useradd --system --home /app --shell /sbin/nologin --comment "expense user" expense &>>$LOG_FILE
     VALIDATE $? "Creating expense user"
 else
-    echo -e "System user roboshop already created ... $Y SKIPPING $N"
+    echo -e "System user expense already created ... $Y SKIPPING $N"
 fi
 
 mkdir -p /app 
