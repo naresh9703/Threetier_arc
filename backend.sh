@@ -82,8 +82,7 @@ VALIDATE $? "bakend"
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
 
-
-mysql -h mysql.nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql
+mysql -h nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql
 validate $? "loading the schema"
 
 systemctl restart backend &>>$LOG_FILE
