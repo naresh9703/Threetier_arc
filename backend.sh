@@ -34,7 +34,7 @@ VALIDATE(){
     fi
 }
 
-read -s MYSQL_ROOT_PASSWORD
+
 
 dnf module disable nodejs -y &>>$LOG_FILE 
 VALIDATE $? "Disabling default nodejs"
@@ -82,8 +82,10 @@ VALIDATE $? "Starting Catalogue"
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
 
-mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql
-validate $? "password access"
+read -s MYSQL_ROOT_PASSWORD
+
+mysql -h mysql.nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql
+validate $? "loading the schema"
 
 systemctl restart backend &>>$LOG_FILE
 VALIDATE $? "restarting backend"
