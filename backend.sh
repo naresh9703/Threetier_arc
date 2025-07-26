@@ -75,9 +75,9 @@ cp $SCRIPT_DIR/backend.service /etc/systemd/system/backend.service
 VALIDATE $? "Copying backend service"
 
 systemctl daemon-reload &>>$LOG_FILE
-systemctl enable catalogue  &>>$LOG_FILE
-systemctl start catalogue &>>$LOG_FILE
-VALIDATE $? "Starting Catalogue"
+systemctl start backend &>>$LOG_FILE
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "bakend"
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
