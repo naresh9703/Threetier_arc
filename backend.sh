@@ -14,9 +14,6 @@ SCRIPT_DIR=$PWD #absolute path
 mkdir -p $LOGS_FOLDER
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
-#echo "Please enter root password to setup"
-read -s MYSQL_ROOT_PASSWORD
-
 
 # check the user has root priveleges or not
 if [ $USERID -ne 0 ]
@@ -85,6 +82,8 @@ VALIDATE $? "bakend"
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
+
+read -s MYSQL_ROOT_PASSWORD
 
 mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql
 #mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
