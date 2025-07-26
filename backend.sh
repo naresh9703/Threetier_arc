@@ -63,8 +63,8 @@ VALIDATE $? "Downloading Catalogue"
 
 rm -rf /app/*
 cd /app 
-unzip /tmp/catalogue.zip &>>$LOG_FILE
-VALIDATE $? "unzipping catalogue"
+unzip /tmp/backend.zip &>>$LOG_FILE
+VALIDATE $? "unzipping backend"
 
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing Dependencies"
