@@ -36,13 +36,13 @@ VALIDATE(){
 
 read -s MYSQL_ROOT_PASSWORD
 
-dnf module disable nodejs -y &>>$LOG_FILE &>>$LOG_FILE
+dnf module disable nodejs -y &>>$LOG_FILE 
 VALIDATE $? "Disabling default nodejs"
 
-dnf module enable nodejs:20 -y &>>$LOG_FILE &>>$LOG_FILE
+dnf module enable nodejs:20 -y &>>$LOG_FILE 
 VALIDATE $? "Enabling nodejs:20"
 
-dnf install nodejs -y &>>$LOG_FILE &>>$LOG_FILE
+dnf install nodejs -y &>>$LOG_FILE 
 VALIDATE $? "Installing nodejs:20"
 
 
