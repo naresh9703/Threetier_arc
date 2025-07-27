@@ -10,6 +10,7 @@ N="\e[0m"
 LOGS_FOLDER="/var/log/roboshop-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+SCRIPT_DIR=$PWD
 
 VALIDATE(){
     if [ $1 -ne 0 ]
@@ -68,14 +69,14 @@ VALIDATE $? "unzip backend"
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing dependencies"
 
-cp /home/ec2-user/shell-project/backend.service /etc/systemd/system/backend.service
+cp $SCRIPT_DIR/backend.service /etc/systemd/system/backend.service
 
 # Prepare MySQL Schema
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h mysql.jyothi.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Setting up the transactions schema and tables"
 
 systemctl daemon-reload &>>$LOG_FILE
