@@ -49,6 +49,8 @@ VALIDATE $? "Starting MySQL"
 mysql_secure_installation --set-root-pass $MYSQL_ROOT_PASSWORD &>>$LOG_FILE
 VALIDATE $? "Setting MySQL root password"
 
+mysql -h mysql.nareshveeranala.shop -u root -p$MYSQL_ROOT_PASSWORD -e 'show databases;' &>>$LOG_FILE_NAME
+
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
 
