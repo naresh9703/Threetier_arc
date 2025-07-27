@@ -56,7 +56,7 @@ else
     echo -e "System user expense already created ... $Y SKIPPING $N"
 fi
 
-mkdir -p /app 
+mkdir -p /app &>>$LOG_FILE
 VALIDATE $? "Creating app directory"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
@@ -77,7 +77,6 @@ VALIDATE $? "Copying backend service"
 
 
 dnf install mysql -y &>>$LOG_FILE
-
 VALIDATE $? "Installing mysql"
 
 #read -s MYSQL_ROOT_PASSWORD
