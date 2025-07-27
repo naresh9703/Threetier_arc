@@ -77,12 +77,13 @@ VALIDATE $? "Copying backend service"
 
 
 dnf install mysql -y &>>$LOG_FILE
+
 VALIDATE $? "Installing mysql"
 
-read -s MYSQL_ROOT_PASSWORD
+#read -s MYSQL_ROOT_PASSWORD
 
-mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD -e 'show databases;' &>>$LOG_FILE
-validate $? "loading the schema"
+mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+VALIDATE $? "Setting up the transactions schema and tables"
 
 
 systemctl daemon-reload &>>$LOG_FILE
