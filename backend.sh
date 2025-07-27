@@ -82,7 +82,7 @@ VALIDATE $? "Installing mysql"
 
 #read -s MYSQL_ROOT_PASSWORD
 
-mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Setting up the transactions schema and tables"
 
 
