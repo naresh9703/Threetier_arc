@@ -81,7 +81,7 @@ VALIDATE $? "Installing mysql"
 
 read -s MYSQL_ROOT_PASSWORD
 
-mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD -e 'show databases;' &>>$LOG_FILE
 validate $? "loading the schema"
 
 
