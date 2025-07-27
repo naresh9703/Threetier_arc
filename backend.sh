@@ -75,10 +75,6 @@ VALIDATE $? "Installing Dependencies"
 cp $SCRIPT_DIR/backend.service /etc/systemd/system/backend.service 
 VALIDATE $? "Copying backend service"
 
-systemctl daemon-reload &>>$LOG_FILE
-systemctl start backend &>>$LOG_FILE
-systemctl enable backend &>>$LOG_FILE
-VALIDATE $? "bakend"
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
@@ -88,6 +84,12 @@ read -s MYSQL_ROOT_PASSWORD
 mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql
 #mysql -h nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql 
 validate $? "loading the schema"
+
+
+systemctl daemon-reload &>>$LOG_FILE
+systemctl start backend &>>$LOG_FILE
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "bakend"
 
 systemctl restart backend &>>$LOG_FILE
 VALIDATE $? "restarting backend"
