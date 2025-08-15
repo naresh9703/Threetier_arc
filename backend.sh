@@ -81,8 +81,8 @@ VALIDATE $? "Copying backend service"
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing mysql"
 
-echo "Please enter root password to setup"
-read -s MYSQL_ROOT_PASSWORD
+#echo "Please enter root password to setup"
+#read -s MYSQL_ROOT_PASSWORD
 mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 #mysql -h mysql.nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>>$LOG_FILE
 
