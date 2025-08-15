@@ -9,7 +9,7 @@ N="\e[0m"
 LOGS_FOLDER="/var/log/roboshop-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-SCRIPT_DIR=$PWD #absolute path
+#SCRIPT_DIR=$PWD #absolute path
 
 mkdir -p $LOGS_FOLDER
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
@@ -49,7 +49,7 @@ dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing nodejs:20"
 
 
-id expense
+id expense &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
     useradd --system --home /app --shell /sbin/nologin --comment "expense user" expense &>>$LOG_FILE
@@ -83,8 +83,8 @@ VALIDATE $? "Installing mysql"
 
 echo "Please enter root password to setup"
 read -s MYSQL_ROOT_PASSWORD
-#mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
-mysql -h mysql.nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.nareshveeranala.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+#mysql -h mysql.nareshveeranala.shop -uroot -p$MYSQL_ROOT_PASSWORD < /app/schema/backend.sql &>>$LOG_FILE
 
 VALIDATE $? "Setting up the transactions schema and tables"
 
